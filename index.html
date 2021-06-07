@@ -17,11 +17,13 @@
 			font-family: 'GameFont', Fallback, sans-serif;
 			margin: 0px;
 			background: black;
+			min-width:350px;
+			overflow: scroll;
 
 		}
 
 		#front {
-			background-image: url('https://i.ibb.co/YtjqVkK/meeech-1.png');
+			background-image: url('https://i.ibb.co/yQfkQF9/meeech-2.png');
 			background-position: center center;
 			background-repeat: no-repeat;
 			background-attachment: fixed;
@@ -105,7 +107,7 @@
 		#code {
 			border: 1px solid #41e3fc; /* some kind of blue border */
 			top:50%;
-			left:52%;
+			right:22%;
 			position: absolute;
 			transition: translateY(-50%);
 			/* other CSS styles */
@@ -122,8 +124,8 @@
 			box-shadow: 0px 0px 14px #41e3fc; 
 
 			width:30%;
-			max-width:300px;
-			min-width:250px;
+			max-width:450px;
+			min-width:300px;
 		}
 
 		.ag-format-container {
@@ -575,29 +577,134 @@
 			box-shadow: 0px 0px 14px #41e3fc; 
 
 			width:30%;
-			max-width:300px;
+			max-width:450px;
 			min-width:300px;
 		}
 
 		#nft-label {
-			top:35%;
+			top:33%;
 			right: 65%;
 			position: absolute;
 
-			height: 300px;
-			max-width:300px;
+			width:30%;
+			max-width:450px;
+			min-width:300px;
 		}
 
 		#code-label {
 			top:52%;
-			left:52%;
+			right:22%;
 			position: absolute;
 
 			width:30%;
-			max-width:300px;
-			min-width:250px;
+			max-width:450px;
+			min-width:300px;
 		}
 
+		/* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+		@media screen and (max-width: 400px) {
+			#nft {
+				top:25%;
+				right: 10%;
+			}
+
+			#nft-label {
+				top:18% !important;
+				right: 10%;
+			}
+
+			#code-label {
+				top:62%;
+				right:10%;
+			}
+
+			#code {
+				top:60% !important;
+				left:10% !important;
+				margin: 0 auto;
+				min-width: 80%;
+			}
+
+			body {
+				height:800px;
+				overflow:scroll;
+			}
+		}
+
+		/* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+		@media screen and (max-width: 850px) {
+			#nft {
+				top:25%;
+				right: 10%;
+			}
+
+			#nft-label {
+				top:18% !important;
+				right: 10%;
+			}
+
+			#code-label {
+				top:52%;
+				right:10%;
+			}
+
+			#code {
+				top:50%;
+				right:10% !important;
+			}
+		}
+
+
+		/* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+		@media screen and (max-width: 1550px) {
+
+			#nft-label {
+				top:28%;
+			}
+
+			#code-label {
+				top:52%;
+				right:12%;
+			}
+
+			#code {
+				top:50%;
+				right:12% !important;
+			}
+		}
+
+
+		/* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+		@media screen and (min-width: 1750px) {
+
+			#nft-label {
+				top:27%;
+			}
+
+			#code-label {
+				top:52%;
+				right:30%;
+			}
+
+			#code {
+				top:50%;
+				right:30% !important;
+			}
+		}
+
+		/* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+		@media screen and (min-width: 3100px) {
+
+			#code-label {
+				top:52%;
+				right:33%;
+			}
+
+			#code {
+				top:50%;
+				right:33% !important;
+			}
+		}
 
 	</style>
 
@@ -654,69 +761,75 @@
 
 		//Image 
 		// 			background-image: url('https://cdna.artstation.com/p/assets/images/images/014/547/642/large/ong-de-piao-il1601-2-ongdepiao-1601080-mp4.jpg?1544448365');
-		var two = new Two({
-			type: Two.Types.canvas,
-			fullscreen: true,
-			autostart: true
-		}).appendTo(document.getElementById('effects'));
 
-		two.renderer.domElement.style.background = 'transparent';
-		two.renderer.ctx.globalCompositeOperation = 'screen';
+		const width  = window.innerWidth || document.documentElement.clientWidth || 
+		document.body.clientWidth;
+		console.log(width)
+		if (width > 600) {
+			var two = new Two({
+				type: Two.Types.canvas,
+				fullscreen: true,
+				autostart: true
+			}).appendTo(document.getElementById('effects'));
 
-		var amount = 120;
+			two.renderer.domElement.style.background = 'transparent';
+			two.renderer.ctx.globalCompositeOperation = 'screen';
 
-		for (var j = 0; j < amount; j++) {
+			var amount = 120;
 
-			var x = -80, y = 25;
-			var speed = 60;
-			var resolution = 4;
-			var points = [];
-			var vx = (Math.random()  - 0.5) * speed;
-			var vy = - Math.random() * speed;
+			for (var j = 0; j < amount; j++) {
 
-			for (var i = 0; i < resolution; i++) {
-				points.push(new Two.Vector(x, y));
-				x += vx;
-				y += vy;
-				vy += speed / (resolution * 0.66);
+				var x = -80, y = 25;
+				var speed = 60;
+				var resolution = 4;
+				var points = [];
+				var vx = (Math.random()  - 0.5) * speed;
+				var vy = - Math.random() * speed;
+
+				for (var i = 0; i < resolution; i++) {
+					points.push(new Two.Vector(x, y));
+					x += vx;
+					y += vy;
+					vy += speed / (resolution * 0.66);
+				}
+
+				const colorOptions = ['goldenrod','orange','darkslateblue', 'yellow'];
+				var color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+				var sparkline = two.makeCurve(points, true);
+				sparkline.noFill();
+				sparkline.linewidth = 8 * Math.random();
+				sparkline.cap = 'round';
+				sparkline.stroke = color;
+				two.add(sparkline);
+
 			}
 
-			const colorOptions = ['goldenrod','orange','darkslateblue', 'yellow'];
-			var color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-			var sparkline = two.makeCurve(points, true);
-			sparkline.noFill();
-			sparkline.linewidth = 8 * Math.random();
-			sparkline.cap = 'round';
-			sparkline.stroke = color;
-			two.add(sparkline);
-
-		}
-
-		two.scene.translation.set(two.width / 2, two.height / 2);
-
-		two.bind('resize', function() {
 			two.scene.translation.set(two.width / 2, two.height / 2);
-		});
 
-		var mouseX = 1;
+			two.bind('resize', function() {
+				two.scene.translation.set(two.width / 2, two.height / 2);
+			});
 
-		two.bind('update', function(frameCount) {
+			var mouseX = 1;
+
+			two.bind('update', function(frameCount) {
 
 
-			var frames = 30 + (1 - mouseX) * 140;
-			var thickness = 0.1;
+				var frames = 30 + (1 - mouseX) * 140;
+				var thickness = 0.1;
 
-			for (var i = 0; i < two.scene.children.length; i++) {
-				var child = two.scene.children[i];
-				var pct = i / two.scene.children.length;
-				var offset = frames * pct;
-				var ending = ((offset + frameCount) / frames) % 1
-				child.ending = ending;
-				child.beginning = Math.max(ending - thickness * pct + thickness, 0);
-				child.opacity = 1 - child.ending;
-			}
+				for (var i = 0; i < two.scene.children.length; i++) {
+					var child = two.scene.children[i];
+					var pct = i / two.scene.children.length;
+					var offset = frames * pct;
+					var ending = ((offset + frameCount) / frames) % 1
+					child.ending = ending;
+					child.beginning = Math.max(ending - thickness * pct + thickness, 0);
+					child.opacity = 1 - child.ending;
+				}
 
-		});
+			});
+		}
 
 	</script>
 
