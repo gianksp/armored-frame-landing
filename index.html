@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Armored Frame</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+
+	<style>
+
+		@font-face {
+			font-family: 'GameFont';
+			src: url('fonts/aframe.otf');
+		}
+
+		body {
+			font-family: 'GameFont', Fallback, sans-serif;
+			margin: 0px;
+			background: black;
+
+		}
+
+		#front {
+			background-image: url('https://i.ibb.co/YtjqVkK/meeech-1.png');
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			height:100vh;
+			width:100%;
+			opacity: 0.75;
+		}
+
+		#effects {
+
+		}
+
+		#title {
+			margin: 0 auto;
+			width: 100%;
+			padding-top: 20px;
+
+		}
+
+		h1>span{
+			/*color:white;*/
+			top:3%;
+			position: absolute;
+			transition: translateY(-50%);
+			margin: 0;
+			padding: 0;
+			width:100%;
+			text-align: center;
+			font-family: sans-serif;
+			font-style: italic;
+			font-size:2em;
+			text-transform: uppercase;
+			letter-spacing: 5px;
+			background:linear-gradient(#262626,#eaeaea,#262626);
+			-webkit-background-clip: text;
+			color:transparent;
+		}
+		h1>span:nth-child(1)
+		{
+			z-index: 2;
+		}
+		h1>span:nth-child(2)
+		{
+			z-index: 1;
+			text-shadow: 1px 1px 0 #262626, 2px 2px 0 #262626, 3px 3px 0 #262626,
+			4px 4px 0 #262626, 5px 5px 0 #262626, 1px 1px 0 #262626, 6px 20px 20px rgba(0,0,0,1),
+			-1px -1px 0 #fff;
+		}
+
+		h5>span{
+			/*color:white;*/
+			top:90%;
+			position: absolute;
+			transition: translateY(-50%);
+			margin: 0;
+			padding: 0;
+			width:100%;
+			text-align: center;
+			font-family: sans-serif;
+			font-style: italic;
+			font-size:1.5em;
+			text-transform: uppercase;
+			letter-spacing: 5px;
+			background:linear-gradient(#262626,#eaeaea,#262626);
+			-webkit-background-clip: text;
+			color:transparent;
+		}
+		h5>span:nth-child(1)
+		{
+			z-index: 2;
+		}
+		h5>span:nth-child(2)
+		{
+			z-index: 1;
+			text-shadow: 1px 1px 0 #262626, 2px 2px 0 #262626, 3px 3px 0 #262626,
+			4px 4px 0 #262626, 5px 5px 0 #262626, 1px 1px 0 #262626, 6px 20px 20px rgba(0,0,0,1),
+			-1px -1px 0 #fff;
+		}
+
+		#code {
+			border: 1px solid #41e3fc; /* some kind of blue border */
+			top:50%;
+			left:52%;
+			position: absolute;
+			transition: translateY(-50%);
+			/* other CSS styles */
+
+			/* round the corners */
+			-webkit-border-radius: 14px;
+			-moz-border-radius: 14px;
+			border-radius: 14px;
+
+
+			/* make it glow! */
+			-webkit-box-shadow: 0px 0px 14px #41e3fc;
+			-moz-box-shadow: 0px 0px 14px #41e3fc;
+			box-shadow: 0px 0px 14px #41e3fc; 
+
+			width:30%;
+			max-width:300px;
+			min-width:250px;
+		}
+
+		.ag-format-container {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.ag-smoke-block {
+			height: 100%;
+
+			position: relative;
+		}
+		.ag-smoke_smoke-1-1 {
+			bottom: -22px;
+			width: 324px;
+			height: 242px;
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-1-1.png);
+
+			position: absolute;
+			left: 50%;
+		}
+		.ag-smoke_smoke-1-2 {
+			height: 644px;
+			width: 1368px;
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-1-2.png);
+
+			z-index: 4;
+			position: absolute;
+			bottom: -139px;
+
+			-webkit-transition: margin-bottom 0.5s ease;
+			-o-transition: margin-bottom 0.5s ease;
+			-moz-transition: margin-bottom 0.5s ease;
+			transition: margin-bottom 0.5s ease;
+		}
+		.js-ag-smoke_toggle {
+			margin-bottom: -430px;
+		}
+		.ag-smoke_smoke_box {
+			height: 297px;
+			width: 100%;
+
+			z-index: 1;
+			position: absolute;
+			bottom: 0;
+		}
+		.ag-smoke_smoke-2 {
+			height: 297px;
+			width: 1920px;
+
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+		.ag-smoke_smoke-2-1 {
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-2-1.png);
+		}
+		.ag-smoke_smoke-2-2 {
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-2-2.png);
+		}
+		.ag-smoke_smoke-2-3 {
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-2-3.png);
+		}
+		.ag-smoke_smoke-2-4 {
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-2-4.png);
+		}
+		.ag-smoke_smoke-2-5 {
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-2-5.png);
+		}
+		.ag-smoke_smoke-2-6 {
+			background-image: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/smoke/images/smoke-2-6.png);
+		}
+		.ag-smoke_smoke-1-1 {
+			z-index: 4;
+
+			-webkit-animation: an-smoke-anim-1 20s ease 0s normal none infinite running;
+			-moz-animation: an-smoke-anim-1 20s ease 0s normal none infinite running;
+			-o-animation: an-smoke-anim-1 20s ease 0s normal none infinite running;
+			animation: an-smoke-anim-1 20s ease 0s normal none infinite running;
+		}
+		.ag-smoke_smoke-1-2 {
+			-webkit-animation: an-smoke-anim-1 15s ease -7s normal none infinite running;
+			-moz-animation: an-smoke-anim-1 15s ease -7s normal none infinite running;
+			-o-animation: an-smoke-anim-1 15s ease -7s normal none infinite running;
+			animation: an-smoke-anim-1 15s ease -7s normal none infinite running;
+		}
+		.ag-smoke_smoke-2-1 {
+			-webkit-animation: an-smoke-anim-2 25s ease -4s normal none infinite running;
+			-moz-animation: an-smoke-anim-2 25s ease -4s normal none infinite running;
+			-o-animation: an-smoke-anim-2 25s ease -4s normal none infinite running;
+			animation: an-smoke-anim-2 25s ease -4s normal none infinite running;
+		}
+		.ag-smoke_smoke-2-2 {
+			-webkit-animation: an-smoke-anim-2 25s ease -8s normal none infinite running;
+			-moz-animation: an-smoke-anim-2 25s ease -8s normal none infinite running;
+			-o-animation: an-smoke-anim-2 25s ease -8s normal none infinite running;
+			animation: an-smoke-anim-2 25s ease -8s normal none infinite running;
+		}
+		.ag-smoke_smoke-2-3 {
+			-webkit-animation: an-smoke-anim-2 25s ease -12s normal none infinite running;
+			-moz-animation: an-smoke-anim-2 25s ease -12s normal none infinite running;
+			-o-animation: an-smoke-anim-2 25s ease -12s normal none infinite running;
+			animation: an-smoke-anim-2 25s ease -12s normal none infinite running;
+		}
+		.ag-smoke_smoke-2-4 {
+			-webkit-animation: an-smoke-anim-2 25s ease -16s normal none infinite running;
+			-moz-animation: an-smoke-anim-2 25s ease -16s normal none infinite running;
+			-o-animation: an-smoke-anim-2 25s ease -16s normal none infinite running;
+			animation: an-smoke-anim-2 25s ease -16s normal none infinite running;
+		}
+		.ag-smoke_smoke-2-5 {
+			-webkit-animation: an-smoke-anim-2 25s ease -20s normal none infinite running;
+			-moz-animation: an-smoke-anim-2 25s ease -20s normal none infinite running;
+			-o-animation: an-smoke-anim-2 25s ease -20s normal none infinite running;
+			animation: an-smoke-anim-2 25s ease -20s normal none infinite running;
+		}
+		.ag-smoke_smoke-2-6 {
+			-webkit-animation: an-smoke-anim-2 25s ease -24s normal none infinite running;
+			-moz-animation: an-smoke-anim-2 25s ease -24s normal none infinite running;
+			-o-animation: an-smoke-anim-2 25s ease -24s normal none infinite running;
+			animation: an-smoke-anim-2 25s ease -24s normal none infinite running;
+		}
+
+		@-webkit-keyframes an-smoke-anim-1 {
+			0% {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-webkit-transform: scale(1) translateY(7px);
+				transform: scale(1) translateY(7px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			to {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+		}
+		@-moz-keyframes an-smoke-anim-1 {
+			0% {
+				opacity: 1;
+
+				-moz-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-moz-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-moz-transform: scale(1) translateY(7px);
+				transform: scale(1) translateY(7px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-moz-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			to {
+				opacity: 1;
+
+				-moz-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+		}
+		@-o-keyframes an-smoke-anim-1 {
+			0% {
+				opacity: 1;
+
+				-o-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-o-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-o-transform: scale(1) translateY(7px);
+				transform: scale(1) translateY(7px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			to {
+				opacity: 1;
+
+				-o-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+		}
+		@keyframes an-smoke-anim-1 {
+			0% {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translateY(-7px);
+				-moz-transform: scale(1) translateY(-7px);
+				-o-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(14px);
+				-moz-transform: scale(1) translate(14px);
+				-o-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-webkit-transform: scale(1) translateY(7px);
+				-moz-transform: scale(1) translateY(7px);
+				-o-transform: scale(1) translateY(7px);
+				transform: scale(1) translateY(7px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(-14px);
+				-moz-transform: scale(1) translate(-14px);
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			to {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translateY(-7px);
+				-moz-transform: scale(1) translateY(-7px);
+				-o-transform: scale(1) translateY(-7px);
+				transform: scale(1) translateY(-7px);
+			}
+		}
+
+		@-webkit-keyframes an-smoke-anim-2 {
+			0% {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-webkit-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			to {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+		}
+		@-moz-keyframes an-smoke-anim-2 {
+			0% {
+				opacity: 1;
+
+				-moz-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-moz-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-moz-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-moz-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			to {
+				opacity: 1;
+
+				-moz-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+		}
+		@-o-keyframes an-smoke-anim-2 {
+			0% {
+				opacity: 1;
+
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-o-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-o-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			to {
+				opacity: 1;
+
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+		}
+		@keyframes an-smoke-anim-2 {
+			0% {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translate(-14px);
+				-moz-transform: scale(1) translate(-14px);
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			25% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(14px);
+				-moz-transform: scale(1) translate(14px);
+				-o-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			50% {
+				opacity: 0.7;
+
+				-webkit-transform: scale(1) translate(-14px);
+				-moz-transform: scale(1) translate(-14px);
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+			75% {
+				opacity: 0.85;
+
+				-webkit-transform: scale(1) translate(14px);
+				-moz-transform: scale(1) translate(14px);
+				-o-transform: scale(1) translate(14px);
+				transform: scale(1) translate(14px);
+			}
+			to {
+				opacity: 1;
+
+				-webkit-transform: scale(1) translate(-14px);
+				-moz-transform: scale(1) translate(-14px);
+				-o-transform: scale(1) translate(-14px);
+				transform: scale(1) translate(-14px);
+			}
+		}
+
+
+		@media only screen and (max-width: 767px) {
+			.ag-format-container {
+				width: 96%;
+			}
+
+		}
+
+		@media only screen and (max-width: 639px) {
+
+		}
+
+		@media only screen and (max-width: 479px) {
+
+		}
+
+		@media (min-width: 768px) and (max-width: 979px) {
+			.ag-format-container {
+				width: 750px;
+			}
+
+		}
+
+		@media (min-width: 980px) and (max-width: 1161px) {
+			.ag-format-container {
+				width: 960px;
+			}
+
+		}
+
+		#nft {
+			border: 1px solid #41e3fc; /* some kind of blue border */
+			top:40%;
+			right: 65%;
+			position: absolute;
+			transition: translateY(-50%);
+			/* other CSS styles */
+
+			/* round the corners */
+			-webkit-border-radius: 14px;
+			-moz-border-radius: 14px;
+			border-radius: 14px;
+
+
+			/* make it glow! */
+			-webkit-box-shadow: 0px 0px 14px #41e3fc;
+			-moz-box-shadow: 0px 0px 14px #41e3fc;
+			box-shadow: 0px 0px 14px #41e3fc; 
+
+			width:30%;
+			max-width:300px;
+			min-width:300px;
+		}
+
+		#nft-label {
+			top:35%;
+			right: 65%;
+			position: absolute;
+
+			height: 300px;
+			max-width:300px;
+		}
+
+		#code-label {
+			top:52%;
+			left:52%;
+			position: absolute;
+
+			width:30%;
+			max-width:300px;
+			min-width:250px;
+		}
+
+
+	</style>
+
+</head>
+
+<body>
+
+	<div id="effects" />
+	<div id="front" />
+
+	<div id="title">
+
+		<h1>
+			<span>Armored Frame</span>
+			<span>Armored Frame</span>
+		</h1>
+
+		<h5>
+			<span>Mixed Reality</br>Combat Mech Simulator</span>
+			<span>Mixed Reality</br>Combat Mech Simulator</span>
+		</h5>
+
+	</div>
+
+	<img id="code" src="https://media.giphy.com/media/axnFGXT6MzvgY/giphy.gif" alt="OS" />
+	<img id="code-label" src="https://i.ibb.co/svt3Tsv/oslabel.png", alt="OS" />
+	<img id="nft" src="https://i.pinimg.com/originals/39/f6/a0/39f6a005763b37e2237b320df0e68e31.gif" alt="NFT" />
+	<img id="nft-label" src="https://i.ibb.co/jfs2Hk9/nftlabel.png" alt="NFT" />
+
+	<div class="ag-smoke-block">
+		<div class="ag-smoke_smoke ag-smoke_smoke-1-1"></div>
+		<div class="js-smoke_smoke ag-smoke_smoke ag-smoke_smoke-1-2"></div>
+
+		<div class="ag-smoke_smoke_box">
+			<div class="ag-smoke_smoke-2 ag-smoke_smoke-2-1"></div>
+			<div class="ag-smoke_smoke-2 ag-smoke_smoke-2-2"></div>
+			<div class="ag-smoke_smoke-2 ag-smoke_smoke-2-3"></div>
+			<div class="ag-smoke_smoke-2 ag-smoke_smoke-2-4"></div>
+			<div class="ag-smoke_smoke-2 ag-smoke_smoke-2-5"></div>
+			<div class="ag-smoke_smoke-2 ag-smoke_smoke-2-6"></div>
+		</div>
+
+		<div class="ag-format-container">
+
+		</div>
+	</div>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/two.js/0.7.0/two.js" integrity="sha512-L7aMxjEUU9uTrOA79JDW2qydyu5NNSh+iOcanI4To2uxb1E1oEXfcbhe14jbKSskFIQ/UqXjUCFFtk2DR3tOoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+	<script>
+
+		//Image 
+		// 			background-image: url('https://cdna.artstation.com/p/assets/images/images/014/547/642/large/ong-de-piao-il1601-2-ongdepiao-1601080-mp4.jpg?1544448365');
+		var two = new Two({
+			type: Two.Types.canvas,
+			fullscreen: true,
+			autostart: true
+		}).appendTo(document.getElementById('effects'));
+
+		two.renderer.domElement.style.background = 'transparent';
+		two.renderer.ctx.globalCompositeOperation = 'screen';
+
+		var amount = 120;
+
+		for (var j = 0; j < amount; j++) {
+
+			var x = -80, y = 25;
+			var speed = 60;
+			var resolution = 4;
+			var points = [];
+			var vx = (Math.random()  - 0.5) * speed;
+			var vy = - Math.random() * speed;
+
+			for (var i = 0; i < resolution; i++) {
+				points.push(new Two.Vector(x, y));
+				x += vx;
+				y += vy;
+				vy += speed / (resolution * 0.66);
+			}
+
+			const colorOptions = ['goldenrod','orange','darkslateblue', 'yellow'];
+			var color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+			var sparkline = two.makeCurve(points, true);
+			sparkline.noFill();
+			sparkline.linewidth = 8 * Math.random();
+			sparkline.cap = 'round';
+			sparkline.stroke = color;
+			two.add(sparkline);
+
+		}
+
+		two.scene.translation.set(two.width / 2, two.height / 2);
+
+		two.bind('resize', function() {
+			two.scene.translation.set(two.width / 2, two.height / 2);
+		});
+
+		var mouseX = 1;
+
+		two.bind('update', function(frameCount) {
+
+
+			var frames = 30 + (1 - mouseX) * 140;
+			var thickness = 0.1;
+
+			for (var i = 0; i < two.scene.children.length; i++) {
+				var child = two.scene.children[i];
+				var pct = i / two.scene.children.length;
+				var offset = frames * pct;
+				var ending = ((offset + frameCount) / frames) % 1
+				child.ending = ending;
+				child.beginning = Math.max(ending - thickness * pct + thickness, 0);
+				child.opacity = 1 - child.ending;
+			}
+
+		});
+
+	</script>
+
+
+</body>
+</html>
